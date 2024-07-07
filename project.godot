@@ -12,8 +12,16 @@ config_version=5
 
 config/name="Game-jam-heat"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_height=896
+
+[dotnet]
+
+project/assembly_name="Game-jam-heat"
 
 [editor_plugins]
 

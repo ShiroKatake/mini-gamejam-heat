@@ -15,7 +15,7 @@ signal value_set(cell: Vector2i, value)
 signal grid_changed(new_grid: Dictionary)
 signal cell_added(cell: Vector2i)
 signal cell_erased(cell: Vector2i)
-
+signal grid_reset(new_grid: Dictionary)
 
 ## If true, ignores [param regions] and doesn't initialize with any cells,
 ## but allows setting values in any cells.
@@ -85,7 +85,7 @@ func reset() -> void:
 	if not infinite:
 		for region in _regions:
 			add_region(region)
-
+	grid_reset.emit(_grid)
 	queue_redraw()
 
 
@@ -120,7 +120,6 @@ func get_value(cell: Vector2i):
 	if not has_cell(cell):
 		push_error("Attempted to get value at %s in %s, but the cell doesn't exist" % [cell, name])
 		return null
-
 	return _grid[cell]
 
 
@@ -257,6 +256,8 @@ func world_to_map(pos: Vector2) -> Vector2i:
 func map_to_world(cell: Vector2i) -> Vector2:
 	return Vector2(cell * cell_size) + position
 
+func map_to_aoe(cell: Vector2i, offset: Vector2i) -> Vector2:
+	return Vector2((cell-offset) * cell_size) + position
 
 ## Returns the position of the center of the [param cell] in the world.
 func map_to_world_centered(cell: Vector2i) -> Vector2:
