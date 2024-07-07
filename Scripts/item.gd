@@ -12,6 +12,7 @@ var occupied_cells: Array[Vector2i]
 var occupied_aoes: Array[Vector2i]
 var tween: Tween
 signal crack_value(aoe: Array[Vector2i])
+signal end_turn()
 
 
 @onready var top_left_cell = Vector2i(0, 0) :
@@ -45,13 +46,13 @@ func _process(delta: float) -> void:
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and Global.playerTurn:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			_start_dragging()
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and Global.playerTurn:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
 			if dragging:
 				_stop_dragging()
@@ -81,6 +82,7 @@ func _stop_dragging() -> void:
 		target_cell = _drag_start_pos
 	if(target_cell != _drag_start_pos):
 		crack_value.emit(aoe_cells)
+		end_turn.emit()
 	
 	_move_to(target_cell)
 	queue_redraw()
@@ -92,7 +94,7 @@ func _move_to(cell: Vector2i) -> void:
 		cell = _get_next_empty_cell_in_grid()
 	top_left_cell = cell
 	grid.set_values(_get_cells(top_left_cell), self)
-
+	
 	grid.queue_redraw()
 
 

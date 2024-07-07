@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbar5a0rh0fu5"]
 
-[ext_resource type="Script" path="res://Tile.gd" id="1_78kgr"]
+[ext_resource type="Script" path="res://Scripts/tile.gd" id="1_78kgr"]
 [ext_resource type="Texture2D" uid="uid://cwmg4qmrdnlqn" path="res://tileGrass_slope.png" id="2_ybohe"]
 
 [node name="Tile" type="Node2D"]
