@@ -7,7 +7,7 @@ var _tile_scene = load("res://Tile.tscn")
 var snowmans
 var position = "position"
 @onready var rng := RandomNumberGenerator.new()
-@export var _action_count = 2
+@export var _action_count = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,7 +48,7 @@ func has_cellxy(x: int, y: int) -> bool:
 
 func get_value(cell: Vector2i):
 	if not has_cell(cell):
-		push_error("Attempted to get value at %s in %s, but the cell doesn't exist" % [cell, name])
+		## push_error("Attempted to get value at %s in %s, but the cell doesn't exist" % [cell, name])
 		return null
 	return _temperature_grid[cell]
 

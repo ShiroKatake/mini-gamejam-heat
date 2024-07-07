@@ -1,4 +1,4 @@
-class_name CardStateMachine
+class_name GameStateMachine
 extends Node2D
 
 @export var initial_state: TurnState

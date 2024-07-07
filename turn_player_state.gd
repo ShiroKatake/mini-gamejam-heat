@@ -12,11 +12,10 @@ func enter():
 	Global.playerTurn = true
 	print("Player's Turn")
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+		
 func _process(delta):
-	pass
+	if Input.is_action_just_pressed("pass"):
+		transition_requested.emit(self, TurnState.State.ENEMY)
 
 func _on_turn_end():
 	Global.playerTurn = false

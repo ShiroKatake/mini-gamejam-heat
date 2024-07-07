@@ -1,17 +1,21 @@
 extends Area2D
-
+class_name Snowman_P
 
 @export var grid: Grid2D
 @export var size: Vector2i = Vector2i.ONE
 @export var combo: Vector2i = Vector2i.ZERO
 @export var aoe_offset: Vector2i = Vector2i.ZERO
+@export var cooldown: int = 3
 
 var dragging := false
 var _drag_start_pos: Vector2i
+var _start_positions: Array[Vector2i]
 var occupied_cells: Array[Vector2i]
 var occupied_aoes: Array[Vector2i]
 var tween: Tween
+@export var countdown: int = 0
 signal crack_value(aoe: Array[Vector2i])
+signal snow_value(aoe: Array[Vector2i], snow: Snowman_P)
 signal end_turn()
 
 
@@ -35,9 +39,13 @@ func _ready() -> void:
 	for x in combo.x:
 		for y in combo.y:
 			occupied_aoes.append(Vector2i(x, y))
-
 	_move_to(grid.world_to_map(global_position))
+	_start_positions = [Vector2(10, 16), Vector2(11, 16), Vector2(12,16)]
 
+
+func enter():
+	$StartTurn.snow_countdown.connect(_on_snow_countdown)
+	
 
 func _process(delta: float) -> void:
 	if dragging:
@@ -46,13 +54,13 @@ func _process(delta: float) -> void:
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int):
-	if event is InputEventMouseButton and Global.playerTurn:
+	if event is InputEventMouseButton and Global.playerTurn and countdown <= 0:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			_start_dragging()
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and Global.playerTurn:
+	if event is InputEventMouseButton and Global.playerTurn and countdown <= 0:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
 			if dragging:
 				_stop_dragging()
@@ -80,13 +88,12 @@ func _stop_dragging() -> void:
 	
 	if not grid.has_cells(target_cells) or not grid.are_values_null(target_cells):
 		target_cell = _drag_start_pos
-	if(target_cell != _drag_start_pos):
+	if(target_cell != _drag_start_pos) and not $"../../TemperatureManager".is_value_null(target_cell):
 		crack_value.emit(aoe_cells)
 		end_turn.emit()
 	
 	_move_to(target_cell)
 	queue_redraw()
-
 
 func _move_to(cell: Vector2i) -> void:
 	var target_cells := _get_cells(cell)
@@ -94,6 +101,8 @@ func _move_to(cell: Vector2i) -> void:
 		cell = _get_next_empty_cell_in_grid()
 	top_left_cell = cell
 	grid.set_values(_get_cells(top_left_cell), self)
+	if not $"../../TemperatureManager".is_value_null(cell):
+		countdown = cooldown
 	
 	grid.queue_redraw()
 
@@ -149,3 +158,13 @@ func _draw() -> void:
 		var rect_position2 := to_local(Vector2(shadow_call * 64))
 		var rect_size2 := combo * grid.cell_size
 		draw_rect(Rect2(rect_position2, rect_size2), Color(1, 0, 0, 0.38823530077934))
+
+func _on_snow_countdown():
+	countdown -= 1
+	_drag_start_pos = top_left_cell
+	if countdown <= 0 and not $"../../TemperatureManager".is_value_null(_drag_start_pos):
+		for pos in _start_positions:
+			if (grid.is_value_null(pos)):
+				_move_to(pos)
+				break
+		pass
