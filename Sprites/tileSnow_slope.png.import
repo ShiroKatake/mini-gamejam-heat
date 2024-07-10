@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d10ew4lyx62nm"
-path="res://.godot/imported/snowman_placeholder.png-20281512a80eb109725b7c256df1c74a.ctex"
+uid="uid://bsbmpekwjtsf4"
+path="res://.godot/imported/tileSnow_slope.png-3e006bebf67a3bcb1df0e6f4ca9893f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://snowman_placeholder.png"
-dest_files=["res://.godot/imported/snowman_placeholder.png-20281512a80eb109725b7c256df1c74a.ctex"]
+source_file="res://Sprites/tileSnow_slope.png"
+dest_files=["res://.godot/imported/tileSnow_slope.png-3e006bebf67a3bcb1df0e6f4ca9893f7.ctex"]
 
 [params]
 
