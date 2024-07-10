@@ -8,8 +8,3 @@ func enter():
 	print("Enemy's Turn Ended")
 	transition_requested.emit(self, TurnState.State.PROCESSES)
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

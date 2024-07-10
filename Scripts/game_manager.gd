@@ -17,11 +17,6 @@ func _ready():
 		current_state = initial_state
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _on_transition_requested(from: TurnState, to: TurnState.State) -> void:
 	if from != current_state:
 		return

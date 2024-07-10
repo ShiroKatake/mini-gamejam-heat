@@ -47,13 +47,13 @@ func enter():
 	$StartTurn.snow_countdown.connect(_on_snow_countdown)
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if dragging:
 		global_position = get_global_mouse_position() - _get_centered_offset()
 		queue_redraw()
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int):
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and Global.playerTurn and countdown <= 0:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			_start_dragging()
@@ -90,7 +90,14 @@ func _stop_dragging() -> void:
 		target_cell = _drag_start_pos
 	if(target_cell != _drag_start_pos) and not $"../../TemperatureManager".is_value_null(target_cell):
 		crack_value.emit(aoe_cells)
+		snow_value.emit(aoe_cells, self)
 		end_turn.emit()
+	
+	print(aoe_cells)
+	for hit in aoe_cells:
+		if not grid.is_value_null(hit) and not $"../../TemperatureManager".is_value_null(target_cell):
+			print(grid._grid[hit])
+			grid.get_value(hit)._on_snow_countdown()
 	
 	_move_to(target_cell)
 	queue_redraw()
@@ -103,7 +110,6 @@ func _move_to(cell: Vector2i) -> void:
 	grid.set_values(_get_cells(top_left_cell), self)
 	if not $"../../TemperatureManager".is_value_null(cell):
 		countdown = cooldown
-	
 	grid.queue_redraw()
 
 
@@ -124,14 +130,12 @@ func _get_cells(origin: Vector2i) -> Array[Vector2i]:
 	var cells: Array[Vector2i]
 	for occupied_cell in occupied_cells:
 		cells.append(occupied_cell + origin)
-
 	return cells
 
 func _get_aoe(origin: Vector2i) -> Array[Vector2i]:
 	var cells: Array[Vector2i]
 	for occupied_aoe in occupied_aoes:
 		cells.append(occupied_aoe + origin)
-
 	return cells
 
 func _get_next_empty_cell_in_grid() -> Vector2i:

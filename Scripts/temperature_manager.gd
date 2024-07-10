@@ -16,11 +16,6 @@ func _ready():
 		snowman.crack_value.connect(_on_snowman_crack_value)
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_grid_2d_grid_reset(new_grid):
 	_temperature_grid = new_grid.duplicate()
 	var count = 0

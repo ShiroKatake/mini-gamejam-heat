@@ -74,19 +74,7 @@ func _ready() -> void:
 		var label = Label.new()
 		debug_font = label.get_theme_font("")
 		label.queue_free()
-
 	reset()
-
-func enter():
-	snowmans = $"../../SnowmanManager".get_children()
-	for snowman in snowmans:
-		snowman.snow_value.connect(_on_snow_value)
-
-func _on_snow_value(aoe: Array[Vector2i], snow: Snowman_P):
-	for hit in aoe:
-		if not is_value_null(hit) and get_value(hit) is Snowman_P:
-			get_value(hit)._on_snow_countdown()
-	pass
 
 ## Resets the grid to all cells in [param regions]
 ## or to empty if [param infinite] is [code]true[/code].

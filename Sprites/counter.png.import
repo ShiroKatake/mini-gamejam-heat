@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc7dv77fj0b4d"
-path="res://.godot/imported/bear_snowman.png-a2f0c45e5c955f118a6c5dc960f92e98.ctex"
+uid="uid://bxxacfeemtrt4"
+path="res://.godot/imported/counter.png-f39f7af67b58528d7c678f22b0b19539.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bear_snowman.png"
-dest_files=["res://.godot/imported/bear_snowman.png-a2f0c45e5c955f118a6c5dc960f92e98.ctex"]
+source_file="res://Sprites/counter.png"
+dest_files=["res://.godot/imported/counter.png-f39f7af67b58528d7c678f22b0b19539.ctex"]
 
 [params]
 

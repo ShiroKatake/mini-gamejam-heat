@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5g6a0elmxh1f"]
+
+[ext_resource type="Texture2D" uid="uid://bxxacfeemtrt4" path="res://Sprites/counter.png" id="1_v08ds"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 80)
+scale = Vector2(0.539841, 0.445355)
+texture = ExtResource("1_v08ds")

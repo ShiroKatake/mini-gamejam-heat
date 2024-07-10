@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ouv6etnqflr5"
-path="res://.godot/imported/tileSand_slope.png-3dcfded47a941f8d479186f0d577c0da.ctex"
+uid="uid://bc7dv77fj0b4d"
+path="res://.godot/imported/bear_snowman.png-836cc9cfe06f07e224024e5dc7d7a785.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileSand_slope.png"
-dest_files=["res://.godot/imported/tileSand_slope.png-3dcfded47a941f8d479186f0d577c0da.ctex"]
+source_file="res://Sprites/bear_snowman.png"
+dest_files=["res://.godot/imported/bear_snowman.png-836cc9cfe06f07e224024e5dc7d7a785.ctex"]
 
 [params]
 

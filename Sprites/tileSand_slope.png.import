@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwmg4qmrdnlqn"
-path="res://.godot/imported/tileGrass_slope.png-a57fba29594a1f0477544963d394b6b6.ctex"
+uid="uid://ouv6etnqflr5"
+path="res://.godot/imported/tileSand_slope.png-e88962f7d6a881f3ed8c9f4a6fb45b78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileGrass_slope.png"
-dest_files=["res://.godot/imported/tileGrass_slope.png-a57fba29594a1f0477544963d394b6b6.ctex"]
+source_file="res://Sprites/tileSand_slope.png"
+dest_files=["res://.godot/imported/tileSand_slope.png-e88962f7d6a881f3ed8c9f4a6fb45b78.ctex"]
 
 [params]
 

@@ -13,9 +13,9 @@ func enter():
 	print("Player's Turn")
 	pass # Replace with function body.
 		
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("pass"):
-		transition_requested.emit(self, TurnState.State.ENEMY)
+		_on_turn_end()
 
 func _on_turn_end():
 	Global.playerTurn = false

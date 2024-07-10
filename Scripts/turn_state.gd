@@ -8,7 +8,7 @@ enum State {PROCESSES, PLAYER, ENEMY}
 func enter():
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	pass
 
 func on_input(_event: InputEvent):
